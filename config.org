@@ -1,0 +1,63 @@
+#+TITLE: Configuration file
+#+AUTHOR: Steven Quinito Masnada
+
+* General config
+** Personal information
+#+begin_src emacs-lisp :tangle yes
+(setq user-full-name "Steven Masnada"
+      user-mail-address "stevenwhatelse@hotmail.fr")
+#+end_src
+
+** PATH variable
+#+begin_src emacs-lisp :tangle yes
+(setenv "PATH"
+        (concat
+         "/home/steven/.cargo/bin" path-separator
+         "/usr/local/bin" path-separator
+         "/usr/bin" path-separator
+         "/bin" path-separator
+         "/sbin" path-separator
+         "/usr/sbin" path-separator
+         "/usr/local/texlive/2021/bin/x86_64-linux" path-separator
+         "/home/steven/.emacs.d/bin" path-separator
+         "/usr/local/go/bin" path-separator
+         "/home/steven/go/bin" path-separator
+         (getenv "PATH")))
+#+end_src
+
+** Appearance
+*** Theme
+There are two ways to load a theme. Both assume the theme is installed and available. You can either set `doom-theme' or manually load a theme with the `load-theme' function. This is the default:
+
+#+begin_src emacs-lisp :tangle yes
+(setq doom-theme 'doom-one)
+#+end_src
+
+*** Line numbers
+This determines the style of line numbers in effect. If set to `nil', line numbers are disabled. For relative line numbers, set this to `relative'.
+
+#+begin_src emacs-lisp :tangle yes
+(setq display-line-numbers-type t)
+#+end_src
+
+*** Org-bullets
+#+begin_src emacs-lisp :tangle yes
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
+
+
+* Org
+If you use `org' and don't want your org files in the default location below,
+change `org-directory'. It must be set before org loads!
+
+#+begin_src emacs-lisp :tangle yes
+(setq org-directory "~/Documents/org/")
+#+end_src
+
+* Beacon
+To keep track of the cursor.
+
+#+begin_src emacs-lisp :tangle yes
+(beacon-mode 1)
+#+end_src
