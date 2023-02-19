@@ -55,9 +55,14 @@ change `org-directory'. It must be set before org loads!
 #+begin_src emacs-lisp :tangle yes
 (setq org-directory "~/Documents/org/")
 #+end_src
-** Display entities as UTF8
+** Aesthetics
+*** Display entities as UTF8
 #+begin_src emacs-lisp :tangle yes
 (setq org-pretty-entities t)       ;; to have \alpha, \to and others display as utf8 http://orgmode.org/manual/Special-symbols.html
+#+end_src
+*** Hide emphasis markers
+#+begin_src emacs-lisp :tangle yes
+ (setq org-hide-emphasis-markers t)
 #+end_src
 
 * Beacon
@@ -66,6 +71,7 @@ To keep track of the cursor.
 #+begin_src emacs-lisp :tangle yes
 (beacon-mode 1)
 #+end_src
+
 * IDE
 ** Yasnippets
 #+begin_src emacs-lisp :tangle yes
@@ -75,5 +81,5 @@ To keep track of the cursor.
 #+end_src
 * Miscellanous
 #+begin_src emacs-lisp :tangle yes
-(setq ispell-dictionary "french")
+(setq ispell-dictionary "english")
 #+end_src
