@@ -79,7 +79,7 @@ To keep track of the cursor.
 ;; (add-hook 'yas-minor-mode-hook(lambda()
 ;;                                 (yas-activate-extra-mode 'fundamental-mode)))
 #+end_src
-* Miscellanous
+* Miscellaneous
 #+begin_src emacs-lisp :tangle yes
 (setq ispell-dictionary "english")
 #+end_src
