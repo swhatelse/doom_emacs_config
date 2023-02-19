@@ -48,11 +48,16 @@ This determines the style of line numbers in effect. If set to `nil', line numbe
 
 
 * Org
+** Org defaut directory
 If you use `org' and don't want your org files in the default location below,
 change `org-directory'. It must be set before org loads!
 
 #+begin_src emacs-lisp :tangle yes
 (setq org-directory "~/Documents/org/")
+#+end_src
+** Display entities as UTF8
+#+begin_src emacs-lisp :tangle yes
+(setq org-pretty-entities t)       ;; to have \alpha, \to and others display as utf8 http://orgmode.org/manual/Special-symbols.html
 #+end_src
 
 * Beacon
@@ -60,4 +65,15 @@ To keep track of the cursor.
 
 #+begin_src emacs-lisp :tangle yes
 (beacon-mode 1)
+#+end_src
+* IDE
+** Yasnippets
+#+begin_src emacs-lisp :tangle yes
+;; (yas-global-mode 1)
+;; (add-hook 'yas-minor-mode-hook(lambda()
+;;                                 (yas-activate-extra-mode 'fundamental-mode)))
+#+end_src
+* Miscellanous
+#+begin_src emacs-lisp :tangle yes
+(setq ispell-dictionary "french")
 #+end_src
