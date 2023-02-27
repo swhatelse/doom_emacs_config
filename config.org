@@ -64,6 +64,21 @@ change `org-directory'. It must be set before org loads!
 #+begin_src emacs-lisp :tangle yes
  (setq org-hide-emphasis-markers t)
 #+end_src
+** Adding date with brackets with command "C-c d": :LUKA:
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook
+  (lambda ()
+  (global-set-key (kbd "C-c d") 'insert-date)
+  (defun insert-date (prefix)
+      "Insert the current date. With prefix-argument, use ISO format. With
+     two prefix arguments, write out the day and month name."
+      (interactive "P")
+      (let ((format (cond
+  		   ((not prefix) "** %Y-%m-%d")
+  		   ((equal prefix '(4)) "[%Y-%m-%d]"))))
+        (insert (format-time-string format))))
+))
+#+END_SRC
 
 * Beacon
 To keep track of the cursor.
@@ -82,4 +97,11 @@ To keep track of the cursor.
 * Miscellaneous
 #+begin_src emacs-lisp :tangle yes
 (setq ispell-dictionary "english")
+#+end_src
+* Plantuml
+#+begin_src emacs-lisp :tangle yes
+(setq org-plantuml-jar-path (expand-file-name "/home/steven/Tools/plantuml/plantuml.jar"))
+(setq plantuml-default-exec-mode 'jar)
+(add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+(org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 #+end_src
