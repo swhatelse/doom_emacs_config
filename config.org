@@ -46,6 +46,12 @@ This determines the style of line numbers in effect. If set to `nil', line numbe
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+end_src
 
+** Tab indent
+#+begin_src emacs-lisp :tangle yes
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+#+end_src
 
 * Org
 ** Org default directory
@@ -79,6 +85,27 @@ change `org-directory'. It must be set before org loads!
         (insert (format-time-string format))))
 ))
 #+END_SRC
+** Display image
+#+begin_src emacs-lisp :tangle yes
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
+(add-hook 'org-mode-hook 'org-display-inline-images)
+(add-hook 'org-mode-hook 'org-babel-result-hide-all)
+#+end_src
+* Org roam
+#+begin_src emacs-lisp :tangle yes
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "~/Documents/org/roam"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  (org-roam-db-autosync-mode))
+#+end_src
 
 * Beacon
 To keep track of the cursor.
@@ -94,14 +121,24 @@ To keep track of the cursor.
 ;; (add-hook 'yas-minor-mode-hook(lambda()
 ;;                                 (yas-activate-extra-mode 'fundamental-mode)))
 #+end_src
+** Debugger
+#+begin_src emacs-lisp :tangle no
+(setq dap-auto-configure-lfeatures '(sessions locals controls tooltip)
+#+end_src
+*** Go
+#+begin_src emacs-lisp :tangle no
+(require 'dap-dlv-go)
+
+#+end_src
+
 * Miscellaneous
 #+begin_src emacs-lisp :tangle yes
 (setq ispell-dictionary "english")
 #+end_src
 * Plantuml
 #+begin_src emacs-lisp :tangle yes
-(setq org-plantuml-jar-path (expand-file-name "/home/steven/Tools/plantuml/plantuml.jar"))
-(setq plantuml-default-exec-mode 'jar)
+(setq org-plantuml-jar-path (expand-file-name "/home/steven/Tools/plantum/plantumll"))
+;;(setq plantuml-default-exec-mode 'jar)
 (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
 (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 #+end_src
